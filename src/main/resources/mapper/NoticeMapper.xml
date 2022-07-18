@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.INoticeMapper">
+
+    <insert id="InsertNoticeInfo" parameterType="NoticeDTO">
+        Insert into notice
+            ( NOTICE_SEQ, TITLE, CONTENTS, REG_ID )
+        values
+               ( NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{reg_id} )
+    </insert>
+
+    <select id="getNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
+        select * from notice
+    </select>
+
+    <select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+        select *
+        from notice
+        where NOTICE_SEQ = #{notice_seq}
+    </select>
+
+    <delete id="getNoticeDelete" parameterType="NoticeDTO">
+        delete from notice
+        where NOTICE_SEQ = #{notice_seq}
+    </delete>
+
+    <update id="getNoticeUpdate" parameterType="NoticeDTO">
+        update notice
+        set
+            TITLE = #{title},
+            CONTENTS = #{contents}
+        where NOTICE_SEQ = #{notice_seq}
+    </update>
+
+    <select id="noticeUpdate" parameterType="NoticeDTO" resultType="NoticeDTO">
+        select * from notice where NOTICE_SEQ = #{notice_seq}
+    </select>
+</mapper>
