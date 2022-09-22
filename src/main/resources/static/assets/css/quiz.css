@@ -1,0 +1,19 @@
+.cb {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-size: 20px;
+    background-image:url("../img/icons/aducator/chk_off.png");
+}
+
+.cb.chked {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-size: 20px;
+    background-image:url("../img/icons/aducator/chk_on.png");
+}

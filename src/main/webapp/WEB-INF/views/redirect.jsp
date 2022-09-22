@@ -4,18 +4,28 @@
 <%
     String msg = (String)request.getAttribute("msg");
     String url = (String)request.getAttribute("url");
+    String icon = CmmUtil.nvl((String)request.getAttribute("icon"));
+    String contents = CmmUtil.nvl((String)request.getAttribute("contents"));
 %>
 <!DOCTYPE html>
 <html>
 <head>
-    <script>
-        alert("<%=msg%>")
-        location.href="<%=url%>"
-    </script>
-    <meta charset="utf-8"/>
-    <title>웹페이지 제목</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>good</title>
+
+
 </head>
 <body>
 
 </body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    swal( "<%=msg%>", "<%=contents%>","<%=icon%>")
+        .then(function(){
+            location.href="<%=url%>";
+        });
+</script>
 </html>

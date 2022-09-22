@@ -1,5 +1,6 @@
 package kopo.poly.service;
 
+import kopo.poly.dto.MemoDTO;
 import kopo.poly.dto.NoticeDTO;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface INoticeService {
     NoticeDTO noticeUpdate(NoticeDTO nDTO) throws Exception;
 
     int getNoticeUpdate(NoticeDTO nDTO) throws Exception;
+
+    List<NoticeDTO> getNoticeLimitThree() throws Exception;
+
+    List<MemoDTO> getNoticeMemoList() throws Exception;
 }

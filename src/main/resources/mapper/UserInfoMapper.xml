@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
-
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
 <mapper namespace="kopo.poly.persistance.mapper.IUserMapper">
-
+    <!-- 회원가입하기(회원정보 등록하기) -->
     <insert id="InsertUserInfo" parameterType="UserInfoDTO">
         Insert into USERINFO
         (
-            USER_SEQ, USER_ID, USER_PWD, USER_EMAIL, USER_NAME
+            USER_ID, PASSWORD, USER_NAME, USER_EMAIL, AGE, SEX
         ) values (
-                     USER_SEQ.NEXTVAL,#{user_id},#{user_pwd},#{user_email},#{user_name}
+                     #{user_id},#{password}, #{user_name}, #{user_email}, #{age}, #{sex}
                  )
     </insert>
 
     <select id="ChkUserInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
         select *
-        from userinfo
-        where USER_ID = #{user_id} and USER_PWD = #{user_pwd}
+        from USERINFO
+        where USER_ID = #{user_id} and PASSWORD = #{password}
     </select>
 
     <delete id="getUserDelete" parameterType="UserInfoDTO">
-        delete from userinfo
+        delete from USERINFO
         where USER_SEQ = #{user_seq}
     </delete>
+
+    <select id="getUserDetail" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select *
+        from USERINFO
+        where user_seq = #{user_seq}
+    </select>
+
+    <update id="getUserUpdate" parameterType="UserInfoDTO">
+        update USERINFO
+        set USER_ID = #{user_id}, USER_EMAIL = #{user_email}, USER_NAME = #{user_name}, AGE = #{age}, SEX = #{sex}
+        where USER_SEQ = #{user_seq}
+    </update>
+
+    <!--사용자 아이디찾기-->
+    <select id="findUserId" parameterType="UserInfoDTO"
+            resultType="UserInfoDTO">
+        SELECT USER_NAME,USER_EMAIL,USER_ID
+        FROM USERINFO
+        WHERE USER_NAME= #{user_name} AND USER_EMAIL= #{user_email}
+    </select>
+    <!--사용자 비밀번호변경-->
+    <update id="updateUserPw" parameterType="UserInfoDTO">
+        UPDATE USERINFO
+        SET PASSWORD = #{password}
+        WHERE USER_SEQ = #{user_seq} OR USER_EMAIL = #{user_email}
+    </update>
+
 </mapper>

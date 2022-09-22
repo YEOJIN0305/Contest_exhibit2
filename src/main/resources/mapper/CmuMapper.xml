@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.ICmuMapper">
+    <insert id="InsertCmuInfo" parameterType="CmuDTO">
+        insert into NOTICE (
+            NOTICE_YN, ID, NOTICE_DATE, UPDATE_ID, TITLE, CONTENTS, UPDATE_DATE
+        )values (
+                    0, #{id}, now(),#{id}, #{title}, #{contents}, now()
+                )
+    </insert>
+
+    <select id="getCmuList" resultType="CmuDTO">
+        select *
+        from NOTICE
+
+    </select>
+
+    <select id="getCmuDetail" resultType="CmuDTO" parameterType="CmuDTO">
+        select *
+        from NOTICE
+        where NOTICE_SEQ = #{notice_seq}
+    </select>
+
+    <delete id = "cmuDelete" parameterType="CmuDTO">
+        delete from NOTICE
+        where notice_seq =#{notice_seq}
+    </delete>
+    <update id = "cmuUpdate" parameterType="CmuDTO">
+        update NOTICE set
+                          title = #{title}, contents = #{contents}
+
+        where notice_seq = #{notice_seq}
+    </update>
+
+    <select id="getQuestionList" resultType="QuestionDTO">
+        select *
+        from QUESTION
+
+    </select>
+
+    <select id="getAnnouncementList" resultType="AnnouncementDTO">
+        select *
+        from ANNOUNCEMENT
+
+    </select>
+
+</mapper>

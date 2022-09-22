@@ -1,5 +1,6 @@
 package kopo.poly.service.impl;
 
+import kopo.poly.dto.MemoDTO;
 import kopo.poly.dto.NoticeDTO;
 import kopo.poly.persistance.mapper.INoticeMapper;
 import kopo.poly.service.INoticeService;
@@ -76,6 +77,22 @@ public class NoticeService implements INoticeService {
         int res = noticeMapper.getNoticeUpdate(nDTO);
         log.info(this.getClass().getName()+".getNoticeUpdate End!");
         return res;
+    }
+
+    @Override
+    public List<NoticeDTO> getNoticeLimitThree() throws Exception {
+        log.info(this.getClass().getName()+".getNoticeLimitThree start!");
+        List<NoticeDTO> rList = noticeMapper.getNoticeLimitThree();
+        log.info(this.getClass().getName()+".getNoticeLimitThree End!");
+        return rList;
+    }
+
+    @Override
+    public List<MemoDTO> getNoticeMemoList() throws Exception {
+        log.info(this.getClass().getName()+".getNoticeMemoList start!");
+        List<MemoDTO> rList = noticeMapper.getNoticeMemoList();
+        log.info(this.getClass().getName()+".getNoticeMemoList End!");
+        return rList;
     }
 
 }

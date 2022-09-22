@@ -5,29 +5,29 @@
 <mapper namespace="kopo.poly.persistance.mapper.INoticeMapper">
 
     <insert id="InsertNoticeInfo" parameterType="NoticeDTO">
-        Insert into notice
-            ( NOTICE_SEQ, TITLE, CONTENTS, REG_ID )
+        Insert into NOTICE
+            ( TITLE, CONTENTS, REG_ID )
         values
-               ( NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{reg_id} )
+               ( #{title}, #{contents}, #{reg_id} )
     </insert>
 
     <select id="getNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
-        select * from notice
+        select * from NOTICE
     </select>
 
     <select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
         select *
-        from notice
+        from NOTICE
         where NOTICE_SEQ = #{notice_seq}
     </select>
 
     <delete id="getNoticeDelete" parameterType="NoticeDTO">
-        delete from notice
+        delete from NOTICE
         where NOTICE_SEQ = #{notice_seq}
     </delete>
 
     <update id="getNoticeUpdate" parameterType="NoticeDTO">
-        update notice
+        update NOTICE
         set
             TITLE = #{title},
             CONTENTS = #{contents}
@@ -35,6 +35,22 @@
     </update>
 
     <select id="noticeUpdate" parameterType="NoticeDTO" resultType="NoticeDTO">
-        select * from notice where NOTICE_SEQ = #{notice_seq}
+        select * from NOTICE where NOTICE_SEQ = #{notice_seq}
+    </select>
+
+    <select id="getNoticeLimitThree" parameterType="NoticeDTO" resultType="NoticeDTO">
+        select n.notice_seq, n.user_seq,
+               n.notice_date, n.title, n.contents,
+               u.user_name
+        from
+            NOTICE n
+            LEFT OUTER JOIN USERINFO u
+            on n.user_seq = u.user_seq
+        order by n.notice_date desc limit 3
+    </select>
+
+    <select id="getNoticeMemoList" parameterType="MemoDTO" resultType="MemoDTO">
+        select * from  MEMO
+        order by reg_date desc limit 3
     </select>
 </mapper>

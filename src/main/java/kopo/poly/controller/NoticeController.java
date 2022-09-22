@@ -85,7 +85,6 @@ public class NoticeController {
         //DTO에 값을 담아줌
         NoticeDTO pDTO = new NoticeDTO();
         pDTO.setTitle(title);
-        pDTO.setReg_id(reg_id);
         pDTO.setContents(contents);
         
         //서비스로 연결(이후 매퍼->DB->result를 거쳐 옴) -> res가 1/0으로 처리 결과 성공/실패 여부 판단
